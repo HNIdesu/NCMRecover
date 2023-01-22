@@ -97,8 +97,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
                 holder.textView_status.setTextColor(ResourcesCompat.getColor(MainActivity.getInstance().getResources(),R.color.black, null));
                 break;
         }
-        if(item.icon!=null)
-            holder.imageView_icon.setImageBitmap(item.icon);
+        holder.imageView_icon.setImageBitmap(item.icon);
+
 
     }
 

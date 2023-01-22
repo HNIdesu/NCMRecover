@@ -10,7 +10,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import java.io.*;
 import java.net.MalformedURLException;
@@ -48,35 +47,16 @@ public class MainActivity extends AppCompatActivity {
                                 System.exit(0);
                             case R.id.option_scan_directory:
                                 adapter.getItemList().clear();
-                                for (Item it:
-                                        DataBase.getInstance().getItems()) {
+                                for (Item it: DataProveder.getInstance().getItems()) {
                                         adapter.getItemList().add(it);
                                 }
                                 adapter.notifyDataSetChanged();
                                 break;
-                            case R.id.option_add:
-                            {
-                                AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
-                                builder.setMessage("Perhaps there's one day i...");
-                                builder.setNegativeButton("Close", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                                    }
-                                });
-                                builder.show();
-                                break;
-                            }
                             case R.id.option_about:
                             {
                                 AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
-                                builder.setMessage("Author:\t\tArche");
-                                builder.setPositiveButton("Donate", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        Toast.makeText(MainActivity.this, "Thank you.But the software is free of charge.", Toast.LENGTH_LONG).show();
-                                    }
-                                });
+                                builder.setMessage("Author:\t\tHNIdesu");
+
                                 builder.setNegativeButton("Close", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {

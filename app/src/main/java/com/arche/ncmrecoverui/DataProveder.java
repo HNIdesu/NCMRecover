@@ -5,12 +5,12 @@ import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataBase {
-    private static DataBase instance;
+public class DataProveder {
+    private static DataProveder instance;
 
-    public static DataBase getInstance() {
+    public static DataProveder getInstance() {
         if(instance==null)
-            instance=new DataBase();
+            instance=new DataProveder();
         return instance;
     }
     public List<Item> getItems(){

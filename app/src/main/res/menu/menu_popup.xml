@@ -4,11 +4,11 @@
         android:id="@+id/option_scan_directory"
         android:title="扫描目录"/>
     <item
-        android:title="添加"
-        android:id="@+id/option_add"/>
-    <item
         android:title="关于"
         android:id="@+id/option_about"/>
+    <item
+        android:title="帮助"
+        android:id="@+id/option_help"/>
     <item
         android:title="退出"
         android:id="@+id/option_exit"/>
