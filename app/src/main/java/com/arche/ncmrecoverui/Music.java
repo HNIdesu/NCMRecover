@@ -1,5 +1,7 @@
 package com.arche.ncmrecoverui;
 
+import android.nfc.FormatException;
+
 import com.arche.ncmrecover.MusicData;
 import org.jaudiotagger.audio.flac.FlacFileReader;
 import org.jaudiotagger.audio.flac.FlacFileWriter;
@@ -7,10 +9,10 @@ import org.jaudiotagger.audio.generic.AudioFileReader;
 import org.jaudiotagger.audio.generic.AudioFileWriter;
 import org.jaudiotagger.audio.mp3.MP3FileReader;
 import org.jaudiotagger.audio.mp3.MP3FileWriter;
-import org.jaudiotagger.audio.ogg.OggFileReader;
-import org.jaudiotagger.audio.ogg.OggFileWriter;
 import org.jaudiotagger.tag.FieldKey;
 import org.jaudiotagger.tag.Tag;
+import org.jaudiotagger.tag.flac.FlacTag;
+import org.jaudiotagger.tag.id3.ID3v23Tag;
 import org.jaudiotagger.tag.images.AndroidArtwork;
 import org.jaudiotagger.tag.images.Artwork;
 import org.json.*;
@@ -73,15 +75,18 @@ public class Music {
             writeInfo(fl,new MP3FileReader(),new MP3FileWriter());
         }else if(format.equals("flac")){
             writeInfo(fl,new FlacFileReader(),new FlacFileWriter());
-        }else if(format.equals("ogg")){
-            writeInfo(fl,new OggFileReader(),new OggFileWriter());
+        }else {
+            throw new FormatException("格式不支持！");
         }
     }
 
     private void writeInfo(File f, AudioFileReader reader, AudioFileWriter writer) throws Exception{
         AudioFile af= reader.read(f);
-        Tag tag= af.getTag();
-
+        Tag tag;
+        if(f.getName().endsWith(".mp3"))
+            tag=new ID3v23Tag();
+        else
+            tag=new FlacTag();
         if(this.title!=null)
             tag.setField(FieldKey.TITLE,this.title );
         if(this.artists.length!=0)
@@ -96,6 +101,7 @@ public class Music {
         }catch (Exception ex){
 
         }
+        af.setTag(tag);
         writer.write(af);
     }
 

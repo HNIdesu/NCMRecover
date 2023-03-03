@@ -54,9 +54,9 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                             case R.id.option_about:
                             {
-                                AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
-                                builder.setMessage("Author:\t\tHNIdesu");
 
+                                AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
+                                builder.setMessage("Author:\t\tHNIdesu\r\nGithub:\t\thttps://github.com/HNIdesu/NCMRecover");
                                 builder.setNegativeButton("Close", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
